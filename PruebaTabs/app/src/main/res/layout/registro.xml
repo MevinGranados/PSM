@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/nombreUser"
+            android:typeface="normal"
+            android:layout_marginTop="220dp"
+            android:textColor="#ffffff"
+            android:contentDescription="@string/prompt_name"
+            android:foregroundTint="#f93131"
+            android:foregroundTintMode="screen"
+            android:hint="@string/prompt_name"
+            android:outlineProvider="background"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/eMailR"
+            android:typeface="normal"
+            android:layout_marginTop="20dp"
+            android:textColor="#ffffff"
+            android:contentDescription="@string/prompt_email"
+            android:foregroundTint="#f93131"
+            android:foregroundTintMode="screen"
+            android:hint="@string/prompt_email"
+            android:outlineProvider="background"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/passwordR"
+            android:typeface="normal"
+            android:layout_marginTop="20dp"
+            android:textColor="#ffffff"
+            android:contentDescription="@string/prompt_password"
+            android:hint="@string/prompt_password" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/botonRegistro"
+            android:id="@+id/RegistroBtn"
+            android:background="@color/hintColors"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:textSize="30dp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/botonYatengoCuenta"
+            android:id="@+id/loginR"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorAccent"
+            android:background="#00000000" />
+
+    </LinearLayout>
+</RelativeLayout>

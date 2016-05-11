@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CVShare</string>
+    <string name="section_title">LISTA DE</string>
+    <string name="prompt_email">E-Mail </string>
+    <string name="botonEntrar">Log In</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_name">Name</string>
+    <string name="botonRegistro">Register</string>
+    <string name="botonYatengoCuenta">Im already registered</string>
+    <string name="tab1">Newsfeed</string>
+    <string name="tab2">My profile</string>
+    <string name="tab3">Contacts</string>
+    <string name="botonNFC">NFC</string>
+    <string name="prompt_presentacion">Introduction</string>
+    <string name="prompt_contacto">Contact information</string>
+    <string name="prompt_objetivo">Objective</string>
+    <string name="prompt_ExperienciaLaboral">Working experience</string>
+    <string name="prompt_estudios">Studies</string>
+    <string name="prompt_conocimientos">Knowledge</string>
+    <string name="botonEditarPerfil">Edit my profile</string>
+    <string name="prompt_contactos">Contacts</string>
+    <string name="prompt_busqueda">Search</string>
+    <string name="prompt_config">Settings</string>
+    <string name="prompt_salir">Log out</string>
+    <string name="prompt_escribirComentario">Write comment</string>
+    <string name="botonEnviar">Send</string>
+    <string name="configIdioma">Select language</string>
+    <string name="configTema">Select theme</string>
+    <string name="configNotif">Notifications</string>
+    <string name="configHabil">Enable</string>
+    <string name="geoTomar">Take direction</string>
+</resources>

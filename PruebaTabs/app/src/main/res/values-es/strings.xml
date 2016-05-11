@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CVShare</string>
+    <string name="section_title">LISTA DE</string>
+    <string name="botonEntrar">Iniciar Sesión</string>
+    <string name="prompt_email">Correo electrónico </string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="prompt_name">Nombre Completo</string>
+    <string name="botonRegistro">Registrarme</string>
+    <string name="botonYatengoCuenta">Ya poseo una cuenta</string>
+    <string name="tab1">Noticias</string>
+    <string name="tab2">Mi perfil</string>
+    <string name="tab3">Contactos</string>
+    <string name="botonNFC">NFC</string>
+    <string name="prompt_presentacion">Presentación</string>
+    <string name="prompt_contacto">Información de contacto</string>
+    <string name="prompt_objetivo">Objetivo</string>
+    <string name="prompt_ExperienciaLaboral">Experiencia laboral</string>
+    <string name="prompt_estudios">Estudios</string>
+    <string name="prompt_conocimientos">Conocimientos</string>
+    <string name="botonEditarPerfil">Editar mi perfil</string>
+    <string name="prompt_contactos">Contactos</string>
+    <string name="prompt_busqueda">Buscar</string>
+    <string name="prompt_config">Configuración</string>
+    <string name="prompt_salir">Cerrar sesión</string>
+    <string name="prompt_escribirComentario">Escribir comentario</string>
+    <string name="botonEnviar">Enviar</string>
+    <string name="configIdioma">Seleccionar idioma</string>
+    <string name="configTema">Seleccionar tema</string>
+    <string name="configNotif">Notificaciones</string>
+    <string name="configHabil">Habilitar</string>
+    <string name="geoTomar">Tomar direccion</string>
+</resources>
