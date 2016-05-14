@@ -39,6 +39,7 @@ import com.pruebas.tabs.pruebatabs.Mapa;
 import com.pruebas.tabs.pruebatabs.NFCService;
 import com.pruebas.tabs.pruebatabs.Publicacion;
 import com.pruebas.tabs.pruebatabs.R;
+import com.pruebas.tabs.pruebatabs.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,7 @@ public class CVSFragment extends Fragment {
     GestureDetector mDetector;
     GestureLibrary mGestureLibrary;
     ListView listView;
+    PublicationAdapter publicationAdapter;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,15 +78,9 @@ public class CVSFragment extends Fragment {
                 // Setear la imagen al fragmento
                 listView = (ListView) rootView.findViewById(R.id.idListaNewsFeet);
                 final Context myContext = inflater.getContext();
-                User userTest = new User("Kevin", "Tryhard", "KebvinG");
-                final List<Publication> publications = new ArrayList<>();
-                publications.add(new Publication(new User("Kevin", "Tryhard", "LeKevineitor"), publications.size()));
-                publications.add(new Publication(new User("Hany", "Tryhard", "Ne"), publications.size()));
-                publications.add(new Publication(new User("Diego", "Tryhard", "Ne"), publications.size()));
-                publications.add(new Publication(new User("Quetzal", "Tryhard", "Ne"), publications.size()));
-                publications.add(new Publication(new User("Jesus", "Try", "Ne"), publications.size()));
 
-                PublicationAdapter publicationAdapter = new PublicationAdapter(publications);
+                publicationAdapter = new PublicationAdapter(Main.contactos);
+
                 listView.setAdapter(publicationAdapter);
                 listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
@@ -93,8 +89,12 @@ public class CVSFragment extends Fragment {
                         TextView ContactoNombre = (TextView) v.findViewById(R.id.ContactoNombre);
                         Intent intent = new Intent(myContext, Publicacion.class);
                         Bundle b = new Bundle();
-                        b.putString("USER",
-                                publications.get(adapterView.getPositionForView(v)).getUserMain().getName());
+                        b.putInt("USER",
+                                Main.contactos.get(adapterView.getPositionForView(v)).getIdAmigo1());
+                        b.putString("USERname",
+                                Main.contactos.get(adapterView.getPositionForView(v)).getmName());
+                        b.putString("USERpuesto",
+                                Main.contactos.get(adapterView.getPositionForView(v)).getPuesto());
                         intent.putExtras(b);
                         try {
                             startActivity(intent);
@@ -104,7 +104,7 @@ public class CVSFragment extends Fragment {
                         return true;
                     }
                 });
-
+                publicationAdapter.notifyDataSetChanged();
                 listView.setLongClickable(true);
 
                 gestureOverlayView = (GestureOverlayView) rootView.findViewById(R.id.idGestureNewsFeed);
@@ -145,12 +145,16 @@ public class CVSFragment extends Fragment {
                                                                              if (prediction.score > 1) {
                                                                                  String name = prediction.name;
                                                                                  if (name.equals("Gesture_Cerrar_App")) {
-                                                                                     Toast.makeText(myContext, "Gesture_Cerrar_App", Toast.LENGTH_SHORT).show();
+                                                                                     System.exit(0);
+                                                                                     //Toast.makeText(myContext, "Gesture_Cerrar_App", Toast.LENGTH_SHORT).show();
                                                                                  } else if (name.equals("Gesture_Config_App")) {
-                                                                                     Toast.makeText(myContext, "Gesture_Config_App", Toast.LENGTH_SHORT).show();
-                                                                                 } else if (name.equals("Gesture_Contactos_App")) {
+                                                                                     Intent intent = new Intent(myContext, Settings.class);
+                                                                                     startActivity(intent);
+                                                                                     //myContext;
+                                                                                     //Toast.makeText(myContext, "Gesture_Config_App", Toast.LENGTH_SHORT).show();
+                                                                                 } /*else if (name.equals("Gesture_Contactos_App")) {
                                                                                      Toast.makeText(myContext, "Gesture_Contactos_App", Toast.LENGTH_SHORT).show();
-                                                                                 }
+                                                                                 }*/
                                                                              }
                                                                              Toast.makeText(myContext, "" + prediction.score, Toast.LENGTH_SHORT).show();
                                                                          }
@@ -183,7 +187,6 @@ public class CVSFragment extends Fragment {
                 tvText = (TextView) rootView.findViewById(R.id.idConocimientos);
                 tvText.setText(cv.getConocimientos());
                 Button btn = (Button) rootView.findViewById(R.id.idPerfilBtn);
-                Button btnNFC = (Button) rootView.findViewById(R.id.idEnviarNFC);
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -191,13 +194,7 @@ public class CVSFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
-                btnNFC.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(myContext, NFCService.class);
-                        startActivity(intent);
-                    }
-                });
+
             }
                 break;
             case 2: {
@@ -219,8 +216,33 @@ public class CVSFragment extends Fragment {
                 user.add(new User(0, "Hanieli", "RIP", "RIP@gmail.com"));
                 user.add(new User(0, "Hanieli", "Hole", "Hole@gmail.com"));
 
-                contactsAdapter = new ContactsAdapter(user);
+                contactsAdapter = new ContactsAdapter(Main.contactosTodos);
                 listView.setAdapter(contactsAdapter);
+
+                listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapterView, View v,
+                                                   int pos, long id) {
+                        TextView ContactoNombre = (TextView) v.findViewById(R.id.ContactoNombre);
+                        Intent intent = new Intent(myContext, Publicacion.class);
+                        Bundle b = new Bundle();
+                        b.putInt("USER",
+                                Main.contactos.get(adapterView.getPositionForView(v)).getIdAmigo1());
+                        b.putString("USERname",
+                                Main.contactos.get(adapterView.getPositionForView(v)).getmName());
+                        b.putString("USERpuesto",
+                                Main.contactos.get(adapterView.getPositionForView(v)).getPuesto());
+                        intent.putExtras(b);
+                        try {
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        return true;
+                    }
+                });
+
+
                 listView.setTextFilterEnabled(true);
                 mSearchView.setIconifiedByDefault(false);
                 mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -247,6 +269,9 @@ public class CVSFragment extends Fragment {
             break;
 
         }
+
         return rootView;
     }
+
+
 }

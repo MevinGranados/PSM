@@ -27,16 +27,14 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Large Text"
-                android:id="@+id/ContactoNombre"
-                android:textSize="30sp" />
+                android:id="@+id/ContactoNombre" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/ContactoPuesto"
-                android:textSize="30sp" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/ContactoPuesto" />
 
         </LinearLayout>
 

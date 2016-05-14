@@ -19,7 +19,7 @@
     <string name="prompt_estudios">Estudios</string>
     <string name="prompt_conocimientos">Conocimientos</string>
     <string name="botonEditarPerfil">Editar mi perfil</string>
-    <string name="prompt_contactos">Contactos</string>
+    <string name="prompt_contactos">Otros usuarios</string>
     <string name="prompt_busqueda">Buscar</string>
     <string name="prompt_config">Configuración</string>
     <string name="prompt_salir">Cerrar sesión</string>

@@ -47,7 +47,7 @@ public class ComentaryAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         final Comentary comentary = getItem(position);
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        if (comentary.getUserCommentary()!=null) {
+        /*if (comentary.getUserCommentary()!=null) {
 
             View convertView2 = inflater.inflate(R.layout.activity_comentario, null);
 
@@ -77,5 +77,11 @@ public class ComentaryAdapter extends BaseAdapter{
         }
 */
         return convertView;
+    }
+
+    public void Update(List<Comentary> comentaryList) {
+        this.comentaryList.clear();
+        this.comentaryList.addAll(comentaryList);
+        super.notifyDataSetChanged();
     }
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.pruebas.tabs.pruebatabs.Model.Contacto;
 import com.pruebas.tabs.pruebatabs.Model.Publication;
 import com.pruebas.tabs.pruebatabs.Model.User;
 import com.pruebas.tabs.pruebatabs.R;
@@ -21,10 +22,10 @@ import java.util.logging.Filter;
  * Created by Kevin on 03/05/2016.
  */
 public class ContactsAdapter extends BaseAdapter implements Filterable{
-    List<User> listUser;
-    public List<User> orig;
+    List<Contacto> listUser;
+    public List<Contacto> orig;
 
-    public ContactsAdapter(List<User> listUser) {
+    public ContactsAdapter(List<Contacto> listUser) {
         this.listUser = listUser;
 
     }
@@ -36,18 +37,18 @@ public class ContactsAdapter extends BaseAdapter implements Filterable{
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 final FilterResults oReturn = new FilterResults();
-                final List<User> results = new ArrayList<>();
+                final List<Contacto> results = new ArrayList<>();
                 if (orig == null)
                     orig = listUser;
                 if (constraint != null) {
                     if (orig != null && orig.size() > 0) {
-                        for (final User g : orig) {
-                            if (g.getName().toLowerCase()
+                        for (final Contacto g : orig) {
+                            if (g.getmName().toLowerCase()
                                     .contains(constraint.toString()))
                                 results.add(g);
                         }
-                        for (final User g : orig) {
-                            if (g.getUsername().toLowerCase()
+                        for (final Contacto g : orig) {
+                            if (g.getmUsername().toLowerCase()
                                     .contains(constraint.toString()))
                                 results.add(g);
                         }
@@ -61,7 +62,7 @@ public class ContactsAdapter extends BaseAdapter implements Filterable{
             @Override
             protected void publishResults(CharSequence constraint,
                                           FilterResults results) {
-                listUser = (ArrayList<User>) results.values;
+                listUser = (ArrayList<Contacto>) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -79,7 +80,7 @@ public class ContactsAdapter extends BaseAdapter implements Filterable{
     }
 
     @Override
-    public User getItem(int position) {
+    public Contacto getItem(int position) {
         return listUser.get(position);
     }
 
@@ -99,9 +100,9 @@ public class ContactsAdapter extends BaseAdapter implements Filterable{
         ImageView img = (ImageView)convertView.findViewById(R.id.imagenContacto);
 
 
-        final User user = getItem(position);
-        ContactoNombre.setText(user.getName());
-        ContactoPuesto.setText(user.getUsername());
+        Contacto publication = getItem(position);
+        ContactoNombre.setText(publication.getmName());
+        ContactoPuesto.setText(publication.getmUsername());
 
         //    addbutton .setOnClickListener(new View.OnClickListener() {
         //        @Override

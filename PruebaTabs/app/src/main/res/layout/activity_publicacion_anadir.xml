@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Large Text"
-                android:id="@+id/textView"
+                android:id="@+id/myNameUser"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:ems="10"
-                    android:id="@+id/editText"
+                    android:id="@+id/myComentaryUsert"
                     android:inputType="text"
                     android:enabled="true"
                     android:editable="true"
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:text="@string/botonEnviar"
-                    android:id="@+id/button" />
+                    android:id="@+id/mySendComentary" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

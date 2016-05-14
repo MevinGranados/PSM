@@ -25,7 +25,6 @@ public class EditarPerfil extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);
         SharedPreferences settings = getSharedPreferences("_PREFERENCES_", 0);
         int theme = settings.getInt("colorTheme", 0);
         if (theme==0){

@@ -32,13 +32,14 @@ public class InicioSesion extends Activity {
         SharedPreferences settings = getSharedPreferences("_PREFERENCES_", 0);
         boolean signed = settings.getBoolean("singed", false);
         UserDataSource uds = new UserDataSource(InicioSesion.this);
+        MyUser = uds.getUser();
         if (signed){
             intent = new Intent(InicioSesion.this, Main.class);
             startActivity(intent);
             InicioSesion.this.finish();
+            Main.MyUser = uds.getUser();
             return;
         }
-        MyUser = uds.getUser();
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_inicio_sesion);
         intent = getIntent();
@@ -112,6 +113,7 @@ public class InicioSesion extends Activity {
             uds.updateNote(MyUser);
             Intent intent = new Intent(InicioSesion.this, Main.class);
             startActivity(intent);
+            Main.MyUser = MyUser;
             InicioSesion.this.finish();
         }
     }

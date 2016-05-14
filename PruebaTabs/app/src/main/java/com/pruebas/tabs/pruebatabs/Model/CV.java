@@ -1,6 +1,8 @@
 
 package com.pruebas.tabs.pruebatabs.Model;
 
+import com.google.gson.Gson;
+
 /**
  * Created by Kevin on 06/05/2016.
  */
@@ -25,6 +27,26 @@ public class CV {
         this.telefono = telefono;
     }
 
+    public String toJSON(){
+        Gson gson = new Gson();
+        return gson.toJson(this);
+
+    }
+    //MIRA ESTA FUNCION
+    public CV fromJSON(String user) {
+        Gson gson = new Gson();
+        CV[] cv = gson.fromJson(user, CV[].class);
+        this.conocimientos = cv[0].getConocimientos();
+        this.direccion = cv[0].getDireccion();
+        this.estudios = cv[0].getEstudios();
+        this.experienciaLaboral = cv[0].getExperienciaLaboral();
+        this.id = cv[0].getId();
+        this.objetivo = cv[0].getObjetivo();
+        this.puesto = cv[0].getPuesto();
+        this.telefono = cv[0].getTelefono();
+        return cv[0];
+        //return null;
+    }
     public String getConocimientos() {
         return conocimientos;
     }

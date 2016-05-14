@@ -13,11 +13,16 @@ package com.pruebas.tabs.pruebatabs;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -30,8 +35,11 @@ import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import android.provider.Settings.System;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -40,17 +48,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pruebas.tabs.pruebatabs.Model.CV;
+import com.pruebas.tabs.pruebatabs.Model.CVSFragment;
 import com.pruebas.tabs.pruebatabs.Model.CVSPagerAdapter;
+import com.pruebas.tabs.pruebatabs.Model.Contacto;
 import com.pruebas.tabs.pruebatabs.Model.IdiomaConfig;
+import com.pruebas.tabs.pruebatabs.Model.User;
+import com.pruebas.tabs.pruebatabs.Net.Net;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.System.exit;
 
 
 public class Main extends FragmentActivity implements ActionBar.TabListener{
 
     CVSPagerAdapter adapter;
 
+
     ViewPager viewpager;
+    public static User MyUser;
+    public static List<Contacto>contactos;
+    public static List<Contacto>contactosTodos;
+
 
     public static CV myCV;
 
@@ -92,6 +112,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences settings = getSharedPreferences("_PREFERENCES_", 0);
+
         int theme = settings.getInt("colorTheme", 0);
         if (theme==0){
             setTheme(R.style.Theme_Cvshare);
@@ -106,9 +127,11 @@ public class Main extends FragmentActivity implements ActionBar.TabListener{
             IdiomaConfig.setIdioma(getBaseContext(), "en");
         }
 
-
         setContentView(R.layout.activity_main);
 
+
+
+        CargarComentarios();
 
        // Obtener instancia de la Action Bar
         final ActionBar actionBar = getActionBar();
@@ -122,6 +145,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener{
         // Crear adaptador de fragmentos
         adapter = new CVSPagerAdapter(getSupportFragmentManager());
         adapter.context = Main.this;
+
         // Obtener el ViewPager y setear el adaptador y la escucha
         viewpager = (ViewPager) findViewById(R.id.pager);
         viewpager.setAdapter(adapter);
@@ -133,7 +157,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener{
             }
         });
 
-
         // Añadir 3 pestañas y asignarles un título y escucha
         for (int i = 0; i < adapter.getCount(); i++) {
             actionBar.addTab(
@@ -143,6 +166,13 @@ public class Main extends FragmentActivity implements ActionBar.TabListener{
                             .setText(adapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+    }
+
+    void CargarComentarios(){
+        contactos = new ArrayList<>();
+        Net net = new Net(Main.this);
+        net.execute("loadContactos", MyUser.getMid(),"loadAll", MyUser.getMid());
 
     }
 
@@ -164,52 +194,22 @@ public class Main extends FragmentActivity implements ActionBar.TabListener{
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // Nada por hacer
-
-
-
     }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        setIntent(intent);
-    }
-
-
-    /*
-        @Override
-        public boolean onTouchEvent(MotionEvent event) {
-
-            // Reset longclick item if new touch is starting
-            if (event.getAction()==MotionEvent.ACTION_DOWN) {
-                longClickedItem = -1;
-            }
-
-            if (mGestureDetector.onTouchEvent(event))
-                return true;
-            else
-                return false;
-        }
-    */
     @Override
     public void onBackPressed() {
-        System.exit(0);
+        exit(0);
     }
 
-    /*@Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
-        if (true) {
-            TextView ContactoNombre = (TextView) view.findViewById(R.id.ContactoNombre);
+    public void loadContactos(List<Contacto> contactosP){
+        this.contactos = contactosP;
+    }
 
-            ArrayList<String> array = new ArrayList<String>();
-            array.add(ContactoNombre.getText().toString());
-            Intent intent = new Intent(Main.this, Publicacion.class);
-            //intent.putStringArrayListExtra("Cadena",array);
-            //Bundle b = new Bundle();
-            //b.putString("USER", ContactoNombre.getText().toString());
-            //intent.putExtras(b);
+    public void loadContactosT(List<Contacto> contactosP){
+        this.contactosTodos = contactosP;
+    }
 
-            startActivity(intent);
-        }
-    }*/
+    public void loadCV(CV cvP){
+        this.myCV = cvP;
+    }
+
 }

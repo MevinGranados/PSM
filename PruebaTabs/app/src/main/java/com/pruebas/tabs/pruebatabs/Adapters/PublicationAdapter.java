@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pruebas.tabs.pruebatabs.Main;
+import com.pruebas.tabs.pruebatabs.Model.Contacto;
 import com.pruebas.tabs.pruebatabs.Model.Publication;
 import com.pruebas.tabs.pruebatabs.R;
 
@@ -26,9 +27,9 @@ import java.util.List;
  * Created by Kevin on 02/05/2016.
  */
 public class PublicationAdapter extends BaseAdapter{
-    List<Publication> listPublication;
+    List<Contacto> listPublication;
 
-    public PublicationAdapter(List<Publication> listPublication) {
+    public PublicationAdapter(List<Contacto> listPublication) {
         this.listPublication = listPublication;
     }
 
@@ -38,13 +39,13 @@ public class PublicationAdapter extends BaseAdapter{
     }
 
     @Override
-    public Publication getItem(int position) {
+    public Contacto getItem(int position) {
         return listPublication.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return listPublication.get(position).getIdPublication();
+        return listPublication.get(position).getIdAmigo1();
     }
 
     @Override
@@ -58,9 +59,9 @@ public class PublicationAdapter extends BaseAdapter{
         TextView ContactoPuesto = (TextView) convertView.findViewById(R.id.ContactoPuesto);
         ImageView img = (ImageView) convertView.findViewById(R.id.FotoContactoNombre);
 
-        Publication publication = getItem(position);
-        ContactoNombre.setText(publication.getUserMain().getName());
-        ContactoPuesto.setText(publication.getUserMain().getUsername());
+        Contacto publication = getItem(position);
+        ContactoNombre.setText(publication.getmName());
+        ContactoPuesto.setText(publication.getPuesto());
 /*        if (publication.getLista() == null && publication.getIdPublication()==i) {
             i++;
             publication.setLista((ListView) convertView.findViewById(R.id.ContactoComentarios));
